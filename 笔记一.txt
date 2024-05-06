@@ -1,0 +1,24 @@
+CRM项目: 
+界面层(html): 这里使用html, jquery, js, jsp, bootStrap技术
+控制层(Controller): 这里使用Springmvc框架技术
+业务层(Service): 这里使用javase技术, 创建对象, new对象, 调用对象
+持久层(Mapper/Dao): 这里使用mybatis技术
+整合层: 维护类资源, 维护数据库资源, 这里使用spring框架技术
+
+CRM表数据结构: 
+	1、用户表: tbl_user
+	2、数据字典类型表: t_dic_type
+	3、市场活动表: t_activity
+	4、线索备注表: t_clue_remark
+	5、客户表: t_customer
+	6、客户备注表: t_custo,er_remark
+	7、联系人表: t_contacts
+	8、联系人备注表: t_contacts_remark
+	9、交易表: t_tran
+	10、交易备注表: t_tran_remark
+	11、交易历史表: t_tran_histroy
+	12、联系人和市场活动关联关系表: t_contacts_activity_relation
+	13、线索和市场活动关联关系表: t_clue_activity_relation
+	14、任务表: t_task
+	15、线索表: t_clue
+	16、市场活动备注表: t_activity_remark

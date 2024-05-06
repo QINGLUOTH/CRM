@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/settings/index.jsp" value="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/settings" />
+        <entry key="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/settings/qx/permission/index.html" value="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/settings/qx/permission" />
+        <entry key="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/workbench/activity/detail.jsp" value="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/workbench/activity" />
+        <entry key="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/workbench/activity/index.jsp" value="file://$PROJECT_DIR$/crm01/src/main/webapp/WEB-INF/crmPages/workbench/activity" />
+      </map>
+    </option>
+  </component>
+</project>

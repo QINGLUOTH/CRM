@@ -1,0 +1,86 @@
+controller层: 
+	/**
+     * 下载文件
+     * @return ModalAndView
+     */
+    @RequestMapping("/downloadFile.do")
+    public ModelAndView downloadFile(HttpServletRequest request, HttpServletResponse response){
+        // 设置响应类型是x-msdownload
+        response.setContentType("application/x-msdownload;charset=UTF-8");
+        // 指定下载文件名
+        response.setHeader("Content-Disposition", "attachment;filename=xml文件.xml");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName(request.getContextPath() + "/index.jsp");
+        ServletOutputStream servletOutputStream = null;
+        // 获取输出对象
+        try {
+            servletOutputStream = response.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FileInputStream fileInputStream = null;
+        try {
+            // 获取文件
+            // request.getServletContext().getRealPath("/file/xml文件.xml")获取文件的绝对路径
+            fileInputStream = new FileInputStream(request.getServletContext().getRealPath("/file/xml文件.xml"));
+            int i = 0;
+            byte[] files = new byte[1024];
+            // 读取文件, 输出到网页上
+            for(i = fileInputStream.read(files); i != -1; i = fileInputStream.read(files)){
+                servletOutputStream.write(files, 0, i);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            // 关闭所有流
+            if(fileInputStream != null){
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(servletOutputStream != null){
+                try {
+                    servletOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return mv;
+    }
+
+界面层: 
+	<%--
+  Created by IntelliJ IDEA.
+  User: Lenovo
+  Date: 2022/6/29
+  Time: 15:43
+  To change this template use File | Settings | File Templates.
+	--%>
+	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+	<%@ page import="com.nihao.crm.entityClass.user.User" %>
+	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+	<html>
+	<head>
+		<%
+			String path = request.getScheme() + "://" +
+					request.getServerName() + ":" +
+					request.getServerPort() +
+					request.getContextPath() + "/";
+
+			// 获取user对象
+			User user = (User) session.getAttribute("userData");
+		%>
+		<meta charset="UTF-8">
+		<base href="<%=path%>"/>
+		<title>下载文件</title>
+	</head>
+	<body>
+		<a href="downloadFile.do">通过查链接下载xml文件数据</a>
+	</body>
+	</html>

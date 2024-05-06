@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--读取properties属性配置文件, 注册数据库信息-->
+    <context:property-placeholder location="classpath:JDBC.properties"></context:property-placeholder>
+
+    <!--创建数据源-->
+    <!--创建阿里数据连接池对象-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${url}"/>
+        <property name="username" value="${name}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+    <!--配置SqlSessionFactoryBean类, 配置数据源, 指定mybatis核心配置文件, 注册实体类信息-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--这些配置的name是固定的-->
+        <!--配置数据源-->
+        <!--dataSource表示数据源-->
+        <property name="dataSource" ref="dataSource"/>
+
+        <!--配置mybatis核心配置文件-->
+        <!--configLocation表示核心核心配置文件-->
+        <!--<property name="configLocation" value="SqlMapConfig.xml"></property>-->
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+
+        <!--注册实体类-->
+        <!--typeAliasesPackage包注册, typeAliases类注册-->
+        <!--<property name="typeAliasesPackage" value="com.nihao.spring.ClassFile"></property>-->
+        <property name="typeAliasesPackage" value="com.nihao.crm.entityClass"/>
+    </bean>
+
+    <!--使用包注册mapper.xml文件-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--basePackage表示包注册-->
+        <!--mapperFactoryBeanClass表示类注册-->
+        <!--<property name="basePackage" value="com.nihao.spring.mapper"></property>-->
+        <property name="basePackage" value="com.nihao.crm.mapper"/>
+    </bean>
+</beans>
